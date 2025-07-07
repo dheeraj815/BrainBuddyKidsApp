@@ -36,4 +36,4 @@ def show_parent_dashboard():
             st.success("✅ Quiz history cleared successfully!")
 
     else:
-        st.info("No quiz history available yet.")
+        st.info("No quiz history available yet.") 
