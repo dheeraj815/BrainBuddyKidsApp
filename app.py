@@ -26,12 +26,12 @@ if page == "Home":
     st.markdown("""
     👉 Choose an activity from the left sidebar:
 
-    - Math Quiz
-    - Vocabulary Quiz
-    - Riddles
-    - Fun Facts
-    - Animal Quiz
-    - Parent Dashboard (For Parents)
+    - Math Quiz  
+    - Vocabulary Quiz  
+    - Riddles  
+    - Fun Facts  
+    - Animal Quiz  
+    - Parent Dashboard (For Parents)  
 
     ✅ Have fun learning!
     """)
