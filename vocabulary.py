@@ -9,6 +9,10 @@ def clear_vocabulary_session():
     for k in keys:
         del st.session_state[k]
     st.query_params.clear()
+    if 'vocab_answers' in st.session_state:
+        del st.session_state['vocab_answers']
+    if 'vocab_submitted' in st.session_state:
+        del st.session_state['vocab_submitted']
 
 
 def run_vocabulary_quiz():
@@ -25,6 +29,47 @@ def run_vocabulary_quiz():
         {"word": "Kind", "meaning": "Nice to others"},
         {"word": "Jump", "meaning": "To leap up"},
         {"word": "Smart", "meaning": "Very intelligent"},
+        {"word": "Bright", "meaning": "Giving off much light"},
+        {"word": "Loud", "meaning": "Making a lot of noise"},
+        {"word": "Soft", "meaning": "Not hard or firm"},
+        {"word": "Strong", "meaning": "Having great power"},
+        {"word": "Clean", "meaning": "Free from dirt"},
+        {"word": "Dark", "meaning": "Having little or no light"},
+        {"word": "Cold", "meaning": "Low temperature"},
+        {"word": "Quick", "meaning": "Fast"},
+        {"word": "Slow", "meaning": "Not fast"},
+        {"word": "Funny", "meaning": "Causing laughter"},
+        {"word": "Sad", "meaning": "Feeling sorrow"},
+        {"word": "Tall", "meaning": "Of great height"},
+        {"word": "Short", "meaning": "Not tall"},
+        {"word": "Warm", "meaning": "Moderately hot"},
+        {"word": "Wet", "meaning": "Covered with water"},
+        {"word": "Dry", "meaning": "Free from moisture"},
+        {"word": "Young", "meaning": "Not old"},
+        {"word": "Old", "meaning": "Having lived a long time"},
+        {"word": "Rich", "meaning": "Having lots of money"},
+        {"word": "Poor", "meaning": "Having little money"},
+        {"word": "Happy", "meaning": "Feeling pleasure"},
+        {"word": "Angry", "meaning": "Feeling mad"},
+        {"word": "Safe", "meaning": "Free from danger"},
+        {"word": "Dangerous", "meaning": "Likely to cause harm"},
+        {"word": "Clean", "meaning": "Not dirty"},
+        {"word": "Dirty", "meaning": "Not clean"},
+        {"word": "Easy", "meaning": "Not difficult"},
+        {"word": "Hard", "meaning": "Difficult"},
+        {"word": "Friendly", "meaning": "Kind and pleasant"},
+        {"word": "Hungry", "meaning": "Feeling the need for food"},
+        {"word": "Thirsty", "meaning": "Feeling the need for drink"},
+        {"word": "Beautiful", "meaning": "Very pretty"},
+        {"word": "Ugly", "meaning": "Not attractive"},
+        {"word": "Bright", "meaning": "Giving off much light"},
+        {"word": "Dark", "meaning": "Having little light"},
+        {"word": "Strong", "meaning": "Having great power"},
+        {"word": "Weak", "meaning": "Not strong"},
+        {"word": "Fast", "meaning": "Moving quickly"},
+        {"word": "Slow", "meaning": "Not fast"},
+        {"word": "Happy", "meaning": "Feeling joy"},
+        {"word": "Sad", "meaning": "Feeling sorrow"},
     ]
 
     random.shuffle(vocab_questions)
@@ -35,9 +80,9 @@ def run_vocabulary_quiz():
         st.session_state.vocab_submitted = False
 
     for idx, q in enumerate(vocab_questions):
-        st.write(f"**Q{idx+1}: What is the meaning of '{q['word']}'?**")
+        st.write(f"**Q{idx + 1}: What is the meaning of '{q['word']}'?**")
         st.session_state.vocab_answers[idx] = st.text_input(
-            f"Your Answer for Q{idx+1}:", key=f"vocab_answer_{idx}")
+            f"Your Answer for Q{idx + 1}:", key=f"vocab_answer_{idx}")
 
     if not st.session_state.vocab_submitted:
         if st.button("Submit Vocabulary Quiz"):
@@ -46,7 +91,7 @@ def run_vocabulary_quiz():
     if st.session_state.vocab_submitted:
         score = 0
         for idx, q in enumerate(vocab_questions):
-            st.write(f"Q{idx+1}: Meaning of **{q['word']}**")
+            st.write(f"Q{idx + 1}: Meaning of **{q['word']}**")
             st.write(f"👉 Your Answer: {st.session_state.vocab_answers[idx]}")
             st.write(f"✅ Correct Answer: {q['meaning']}")
             if st.session_state.vocab_answers[idx].strip().lower() == q['meaning'].lower():
@@ -65,3 +110,4 @@ def run_vocabulary_quiz():
 
         if st.button("Restart Vocabulary Quiz"):
             clear_vocabulary_session()
+            st.experimental_rerun()
