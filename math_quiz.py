@@ -13,7 +13,7 @@ def clear_math_quiz_session():
 
 def run_math_quiz():
     st.header("🧮 Math Quiz")
-    total_questions = 10
+    total_questions = 50
 
     if 'math_quiz_data' not in st.session_state:
         st.session_state.math_quiz_data = []
